@@ -237,6 +237,26 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CheckRemoveItemFromMultiples()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 4;
+            int actual;
+
+            //Act
+            myList.Add(5);
+            myList.Add(25);
+            myList.Add(25);
+            myList.Add(25);
+            myList.Add(25);
+            myList.Remove(25);
+            actual = myList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
         /*
         [TestMethod]
         public void CheckOverloadPlus()

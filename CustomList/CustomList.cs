@@ -46,14 +46,19 @@ namespace CustomList
         }
         public void Remove(T value)
         {
+            bool first = true;
             T[] temporary = new T[Capacity];
             int index = 0;
             foreach (T item in items)
             {
                 if (item.Equals(value))
                 {
-                    count--;
-                    continue;
+                    if (first)
+                    {
+                        count--;
+                        first = false;
+                        continue;
+                    }
                 }
                 temporary[index] = item;
                 index++;
