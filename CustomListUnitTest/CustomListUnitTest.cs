@@ -5,64 +5,128 @@ using CustomList;
 namespace CustomListUnitTest
 {
     [TestClass]
-    public class CustomListIntUnitTest
+    public class CustomListUnitTest
     {
         [TestMethod]
         public void CheckAdd()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
-            int value = 5;
+            int expected = 5;
+            int actual;
 
             //Act
             myList.Add(5);
+            actual = myList[0];
 
             //Assert
-            Assert.AreEqual(value, myList[0]);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void CheckAdd2Values()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
-            int value = 5;
-            int secondValue = 10;
+            int expected = 10;
+            int actual;
 
             //Act
             myList.Add(5);
             myList.Add(10);
+            actual = myList[1];
 
             //Assert
-            Assert.AreEqual(secondValue, myList[1]);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CheckCountWithEmptyList()
+        public void CheckAddString()
         {
             //Arrange
-            CustomList<int> myList = new CustomList<int>();
-            int expectedResult = 0;
-            int actualResult;
+            CustomList<string> myList = new CustomList<string>();
+            string expected = "Hello";
+            string actual;
 
             //Act
-            actualResult = myList.Count;
+            myList.Add("Hello");
+            actual = myList[0];
 
             //Assert
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CheckCountAfterAdd()
+        public void CheckAddCapacity()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
-            int value = 5;
-            int expectedResult = 1;
+            int expected = 4;
+            int actual;
 
             //Act
             myList.Add(5);
+            myList.Add(10);
+            actual = myList.Capacity;
 
             //Assert
-            Assert.AreEqual(expectedResult, myList.Count);
+            Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CheckAddCapacityFor5Values()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 8;
+            int actual;
+
+            //Act
+            myList.Add(5);
+            myList.Add(10);
+            myList.Add(15);
+            myList.Add(20);
+            myList.Add(25);
+            myList.Add(30);
+            actual = myList.Capacity;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckAddValuesAfterMaxCapacity()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 25;
+            int actual;
+
+            //Act
+            myList.Add(5);
+            myList.Add(10);
+            myList.Add(15);
+            myList.Add(20);
+            myList.Add(25);
+            myList.Add(30);
+            actual = myList[4];
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckAddCount()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 2;
+            int actual;
+
+            //Act
+            myList.Add(5);
+            myList.Add(10);
+            actual = myList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        //APPROVED TO HERE
+        /*
         [TestMethod]
         public void CheckCapacityWhenEmpty()
         {
@@ -72,21 +136,6 @@ namespace CustomListUnitTest
             int actualResult;
 
             //Act
-            actualResult = myList.Capacity;
-
-            //Assert
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-        [TestMethod]
-        public void CheckCapacityAfterAdd()
-        {
-            //Arrange
-            CustomList<int> myList = new CustomList<int>();
-            int expectedResult = 4;
-            int actualResult;
-
-            //Act
-            myList.Add(5);
             actualResult = myList.Capacity;
 
             //Assert
@@ -143,7 +192,7 @@ namespace CustomListUnitTest
         public void CheckOverloadPlus()
         {
             //Arrange
-            CustomList<int> myList1 = new CustomList<int>() { 1,2,3 };
+            CustomList<int> myList1 = new CustomList<int>() { 1, 2, 3 };
             CustomList<int> myList2 = new CustomList<int>() { 4, 5, 6 };
             CustomList<int> ExpectedResult = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
             CustomList<int> ActualResult;
@@ -164,10 +213,10 @@ namespace CustomListUnitTest
             CustomList<int> ActualResult;
 
             //Act
-            ActualResult = myList1 - myList2
+            ActualResult = myList1 - myList2;
 
             //Assert
-            Assert.AreEqual(ExpectedResult,ActualResult);
+            Assert.AreEqual(ExpectedResult, ActualResult);
         }
         [TestMethod]
         public void CheckZip()
@@ -199,6 +248,19 @@ namespace CustomListUnitTest
             Assert.AreEqual(ExpectedResult, ActualResult);
         }
         [TestMethod]
+        public void CheckToStringString()
+        {
+            //Arrange
+            CustomList<string> myList = new CustomList<string>() { "Hello", "World", "!" };
+            string expectedResult = "HelloWorld!";
+
+            //Act
+            myList.ToString();
+
+            //Assert
+            Assert.AreEqual(expectedResult, myList[0]);
+        }
+        [TestMethod]
         public void CheckEmptyToString()
         {
             //Arrange
@@ -212,5 +274,17 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(ExpectedResult, ActualResult);
         }
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void CheckIndexOutOfBounds()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int index = 3;
+
+            //Act
+            int value = myList[index];
+        }
+        */
     }
 }

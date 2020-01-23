@@ -49,8 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomListIntUnitTest.cs" />
-    <Compile Include="CustomListStringUnitTest.cs" />
+    <Compile Include="CustomListUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
