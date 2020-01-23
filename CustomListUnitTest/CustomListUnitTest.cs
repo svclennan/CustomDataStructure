@@ -126,68 +126,118 @@ namespace CustomListUnitTest
             Assert.AreEqual(expected, actual);
         }
         //APPROVED TO HERE
-        /*
-        [TestMethod]
-        public void CheckCapacityWhenEmpty()
-        {
-            //Arrange
-            CustomList<int> myList = new CustomList<int>();
-            int expectedResult = 0;
-            int actualResult;
-
-            //Act
-            actualResult = myList.Capacity;
-
-            //Assert
-            Assert.AreEqual(expectedResult, actualResult);
-        }
+        
         [TestMethod]
         public void CheckRemove()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
-            int secondValue = 10;
+            int expected = 10;
+            int actual;
 
             //Act
             myList.Add(5);
             myList.Add(10);
             myList.Remove(5);
+            actual = myList[0];
 
             //Assert
-            Assert.AreEqual(secondValue, myList[0]);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CheckRemoveSecondValueCheckFirstValue()
+        public void CheckRemoveCount()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
-            int expectedResult = 5;
+            int expected = 1;
+            int actual;
+
+            //Act
+            myList.Add(5);
+            myList.Add(10);
+            myList.Remove(5);
+            actual = myList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckRemoveSecondValueGetFirstValue()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 5;
+            int actual;
 
             //Act
             myList.Add(5);
             myList.Add(10);
             myList.Add(15);
-            myList.Remove(1);
+            myList.Remove(10);
+            actual = myList[0];
 
             //Assert
-            Assert.AreEqual(expectedResult, myList[0]);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void CheckRemoveSecondValueCheckNewSecondValue()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
-            int expectedResult = 15;
+            int expected = 15;
+            int actual;
 
             //Act
             myList.Add(5);
             myList.Add(10);
             myList.Add(15);
-            myList.Remove(1);
+            myList.Remove(10);
+            actual = myList[1];
 
             //Assert
-            Assert.AreEqual(expectedResult, myList[1]);
+            Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CheckCapacityAfterRemovingFifthItem()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 8;
+            int actual;
+
+            //Act
+            myList.Add(5);
+            myList.Add(10);
+            myList.Add(15);
+            myList.Add(20);
+            myList.Add(25);
+            myList.Remove(25);
+            actual = myList.Capacity;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckRemoveItemNotInList()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 5;
+            int actual;
+
+            //Act
+            myList.Add(5);
+            myList.Add(10);
+            myList.Add(15);
+            myList.Add(20);
+            myList.Add(25);
+            myList.Remove(50);
+            actual = myList.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        /*
         [TestMethod]
         public void CheckOverloadPlus()
         {

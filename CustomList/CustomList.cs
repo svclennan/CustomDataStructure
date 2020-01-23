@@ -10,24 +10,10 @@ namespace CustomList
     {
         T[] items;
         private int capacity;
-        public int Capacity 
-        { 
-            get => capacity;
-            set
-            {
-                capacity = value;
-            }
-        }
         private int count;
-        public int Count 
-        { 
-            get => count;
-        }
-        public T this[int i]
-        { 
-            get => items[i];
-            set => items[i] = value;
-        }
+        public int Capacity {  get => capacity; set => capacity = value; }
+        public int Count { get => count; }
+        public T this[int i] { get => items[i]; set => items[i] = value; }
 
         public CustomList()
         {
@@ -35,22 +21,45 @@ namespace CustomList
             Capacity = 4;
             count = 0;
         }
+
         public void Add(T value)
         {
             if (count == capacity)
             {
-                T[] temp = items;
-                items = new T[Capacity * 2];
-                int index = 0;
-                foreach (T item in temp)
-                {
-                    items[index] = item;
-                    index++;
-                }
                 Capacity = capacity * 2;
+                CopyList();
             }
             items[count] = value;
             count++;
+        }
+        public void CopyList()
+        {
+            T[] temporary = new T[Capacity];
+            int index = 0;
+            foreach (T item in items)
+            {
+                temporary[index] = item;
+                index++;
+            }
+            items = new T[Capacity];
+            items = temporary;
+        }
+        public void Remove(T value)
+        {
+            T[] temporary = new T[Capacity];
+            int index = 0;
+            foreach (T item in items)
+            {
+                if (item.Equals(value))
+                {
+                    count--;
+                    continue;
+                }
+                temporary[index] = item;
+                index++;
+            }
+            items = new T[Capacity];
+            items = temporary;
         }
     }
 }
