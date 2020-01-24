@@ -85,5 +85,15 @@ namespace CustomList
             }
             return newList;
         }
+        public static CustomList<T> operator -(CustomList<T> a, CustomList<T> b)
+        {
+            CustomList<T> newList = a;
+            for (int i = 0; i < b.Count; i++)
+            {
+                newList.Remove(b[i]);
+            }
+
+            return newList;
+        }
     }
 }

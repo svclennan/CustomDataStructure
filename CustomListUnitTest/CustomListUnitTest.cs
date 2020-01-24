@@ -433,22 +433,128 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        /*
+
         [TestMethod]
         public void CheckOverloadMinus()
         {
             //Arrange
-            CustomList<int> myList1 = new CustomList<int>() { 1, 2, 3 };
-            CustomList<int> myList2 = new CustomList<int>() { 2, 3, 4 };
-            CustomList<int> ExpectedResult = new CustomList<int>() { 1 };
-            CustomList<int> ActualResult;
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            string expected = "1";
+            string actual;
 
             //Act
-            ActualResult = myList1 - myList2;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList1.Add(3);
+            myList2.Add(2);
+            myList2.Add(3);
+            myList2.Add(4);
+
+            actual = (myList1 - myList2).ToString();
 
             //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
+            Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CheckOverloadMinusNoValuesSubtracted()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            string expected = "123";
+            string actual;
+
+            //Act
+            myList1.Add(1);
+            myList1.Add(2);
+            myList1.Add(3);
+
+            actual = (myList1 - myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckOverloadMinusStrings()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            string expected = "catbird";
+            string actual;
+
+            //Act
+            myList1.Add("cat");
+            myList1.Add("dog");
+            myList1.Add("bird");
+            myList2.Add("dog");
+
+            actual = (myList1 - myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckOverloadMinusDuplicates()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            string expected = "catdog";
+            string actual;
+
+            //Act
+            myList1.Add("cat");
+            myList1.Add("dog");
+            myList1.Add("dog");
+            myList2.Add("dog");
+
+            actual = (myList1 - myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckOverloadMinusEmptyStartingList()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            string expected = "";
+            string actual;
+
+            //Act
+            myList2.Add("dog");
+
+            actual = (myList1 - myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckOverloadMinusThreeValues()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            CustomList<string> myList3 = new CustomList<string>();
+            string expected = "cat";
+            string actual;
+
+            //Act
+            myList1.Add("cat");
+            myList1.Add("dog");
+            myList1.Add("bird");
+            myList2.Add("dog");
+            myList3.Add("bird");
+
+            actual = (myList1 - myList2 - myList3).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        /*
         [TestMethod]
         public void CheckZip()
         {
