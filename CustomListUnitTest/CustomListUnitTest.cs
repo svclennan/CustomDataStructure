@@ -1,6 +1,5 @@
-﻿using System;
+﻿using CustomList;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CustomList;
 
 namespace CustomListUnitTest
 {
@@ -125,7 +124,6 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        //APPROVED TO HERE
         
         [TestMethod]
         public void CheckRemove()
@@ -257,22 +255,101 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        /*
+
+        [TestMethod]
+        public void CheckToString()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            string expected = "1234";
+            string actual;
+
+            //Act
+            myList.Add(1);
+            myList.Add(2);
+            myList.Add(3);
+            myList.Add(4);
+            actual = myList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckToStringString()
+        {
+            //Arrange
+            CustomList<string> myList = new CustomList<string>();
+            string expected = "HelloWorld!";
+            string actual;
+
+            //Act
+            myList.Add("Hello");
+            myList.Add("World");
+            myList.Add("!");
+            actual = myList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckEmptyToString()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>();
+            string expected = "";
+            string actual;
+
+            //Act
+            actual = myList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestMethod]
         public void CheckOverloadPlus()
         {
             //Arrange
             CustomList<int> myList1 = new CustomList<int>() { 1, 2, 3 };
             CustomList<int> myList2 = new CustomList<int>() { 4, 5, 6 };
-            CustomList<int> ExpectedResult = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
-            CustomList<int> ActualResult;
+            CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
+            CustomList<int> actual;
 
             //Act
-            ActualResult = myList1 + myList2;
+            actual = myList1 + myList2;
 
             //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
+            Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CheckOverloadPlusThreeLists()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            CustomList<int> myList3 = new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>();
+            CustomList<int> actual;
+
+            //Act
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(4);
+            myList2.Add(5);
+            myList3.Add(7);
+            myList3.Add(8);
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(4);
+            expected.Add(5);
+            expected.Add(7);
+            expected.Add(8);
+            actual = myList1 + myList2 + myList3;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        /*
         [TestMethod]
         public void CheckOverloadMinus()
         {
@@ -299,47 +376,6 @@ namespace CustomListUnitTest
 
             //Act
             ActualResult = myList1.Zip(myList2);
-
-            //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
-        }
-        [TestMethod]
-        public void CheckToString()
-        {
-            //Arrange
-            CustomList<int> myList = new CustomList<int>() { 1, 2, 3, 4 };
-            string ExpectedResult = "1234";
-            string ActualResult;
-
-            //Act
-            ActualResult = myList.ToString();
-
-            //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
-        }
-        [TestMethod]
-        public void CheckToStringString()
-        {
-            //Arrange
-            CustomList<string> myList = new CustomList<string>() { "Hello", "World", "!" };
-            string expectedResult = "HelloWorld!";
-
-            //Act
-            myList.ToString();
-
-            //Assert
-            Assert.AreEqual(expectedResult, myList[0]);
-        }
-        [TestMethod]
-        public void CheckEmptyToString()
-        {
-            //Arrange
-            CustomList<int> myList = new CustomList<int>();
-            string ExpectedResult = "";
-            string ActualResult;
-
-            //Act
-            ActualResult = myList.ToString();
 
             //Assert
             Assert.AreEqual(ExpectedResult, ActualResult);
