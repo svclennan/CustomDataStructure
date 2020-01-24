@@ -516,6 +516,26 @@ namespace CustomListUnitTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
+        public void CheckOverloadMinusDuplicatesInts()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            string expected = "12";
+            string actual;
+
+            //Act
+            myList1.Add(1);
+            myList1.Add(2);
+            myList1.Add(2);
+            myList2.Add(2);
+
+            actual = (myList1 - myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
         public void CheckOverloadMinusEmptyStartingList()
         {
             //Arrange
@@ -526,6 +546,23 @@ namespace CustomListUnitTest
 
             //Act
             myList2.Add("dog");
+
+            actual = (myList1 - myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckOverloadMinusEmptyStartingListInts()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            string expected = "";
+            string actual;
+
+            //Act
+            myList2.Add(1);
 
             actual = (myList1 - myList2).ToString();
 
@@ -554,6 +591,29 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CheckOverloadMinusThreeValuesInts()
+        {
+            //Arrange
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            CustomList<int> myList3 = new CustomList<int>();
+            string expected = "1";
+            string actual;
+
+            //Act
+            myList1.Add(1);
+            myList1.Add(2);
+            myList1.Add(3);
+            myList2.Add(2);
+            myList3.Add(3);
+
+            actual = (myList1 - myList2 - myList3).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         /*
         [TestMethod]
         public void CheckZip()

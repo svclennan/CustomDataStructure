@@ -51,14 +51,17 @@ namespace CustomList
             int index = 0;
             foreach (T item in items)
             {
-                if (item.Equals(value) && first)
+                if (item != null)
                 {
-                    count--;
-                    first = false;
-                    continue;
+                    if (item.Equals(value) && first)
+                    {
+                        count--;
+                        first = false;
+                        continue;
+                    }
+                    temporary[index] = item;
+                    index++;
                 }
-                temporary[index] = item;
-                index++;
             }
             items = new T[Capacity];
             items = temporary;
