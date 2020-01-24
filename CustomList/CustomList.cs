@@ -44,9 +44,10 @@ namespace CustomList
             items = new T[Capacity];
             items = temporary;
         }
-        public void Remove(T value)
+        public bool Remove(T value)
         {
             bool first = true;
+            bool output = false;
             T[] temporary = new T[Capacity];
             int index = 0;
             foreach (T item in items)
@@ -57,6 +58,7 @@ namespace CustomList
                     {
                         count--;
                         first = false;
+                        output = true;
                         continue;
                     }
                     temporary[index] = item;
@@ -65,6 +67,7 @@ namespace CustomList
             }
             items = new T[Capacity];
             items = temporary;
+            return output;
         }
         public override string ToString()
         {
@@ -97,6 +100,29 @@ namespace CustomList
             }
 
             return newList;
+        }
+        public CustomList<T> Zip(CustomList<T> b)
+        {
+            CustomList<T> zipped = new CustomList<T>();
+            int indexA = 0;
+            int indexB = 0;
+            int total = Count + b.Count;
+            while (total > 0)
+            {
+                if (indexA < Count)
+                {
+                    zipped.Add(items[indexA]);
+                    indexA++;
+                    total--;
+                }
+                if (indexB < b.Count)
+                {
+                    zipped.Add(b[indexB]);
+                    indexB++;
+                    total--;
+                }
+            }
+            return zipped;
         }
     }
 }

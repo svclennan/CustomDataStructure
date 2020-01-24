@@ -614,22 +614,110 @@ namespace CustomListUnitTest
             Assert.AreEqual(expected, actual);
         }
 
-        /*
         [TestMethod]
         public void CheckZip()
         {
             //Arrange
-            CustomList<int> myList1 = new CustomList<int>() { 1, 2, 3 };
-            CustomList<int> myList2 = new CustomList<int>() { 4, 5, 6 };
-            CustomList<int> ExpectedResult = new CustomList<int>() { 1, 4, 2, 5, 3, 6 };
-            CustomList<int> ActualResult;
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            string expected = "142536";
+            string actual;
 
             //Act
-            ActualResult = myList1.Zip(myList2);
+            myList1.Add(1);
+            myList1.Add(2);
+            myList1.Add(3);
+            myList2.Add(4);
+            myList2.Add(5);
+            myList2.Add(6);
+            actual = (myList1.Zip(myList2)).ToString();
 
             //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
+            Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void CheckZipString()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            string expected = "adbecf";
+            string actual;
+
+            //Act
+            myList1.Add("a");
+            myList1.Add("b");
+            myList1.Add("c");
+            myList2.Add("d");
+            myList2.Add("e");
+            myList2.Add("f");
+            actual = (myList1.Zip(myList2)).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckZipSecondLonger()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            string expected = "adbef";
+            string actual;
+
+            //Act
+            myList1.Add("a");
+            myList1.Add("b");
+            myList2.Add("d");
+            myList2.Add("e");
+            myList2.Add("f");
+            actual = (myList1.Zip(myList2)).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckZipFirstLonger()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            string expected = "adbeczq";
+            string actual;
+
+            //Act
+            myList1.Add("a");
+            myList1.Add("b");
+            myList1.Add("c");
+            myList1.Add("z");
+            myList1.Add("q");
+            myList2.Add("d");
+            myList2.Add("e");
+            actual = (myList1.Zip(myList2)).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckZipEmptyList()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            string expected = "abcz";
+            string actual;
+
+            //Act
+            myList1.Add("a");
+            myList1.Add("b");
+            myList1.Add("c");
+            myList1.Add("z");
+            actual = (myList1.Zip(myList2)).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        /*
         [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void CheckIndexOutOfBounds()
