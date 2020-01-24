@@ -11,7 +11,7 @@ namespace CustomList
         T[] items;
         private int capacity;
         private int count;
-        public int Capacity {  get => capacity; set => capacity = value; }
+        public int Capacity { get => capacity; set => capacity = value; }
         public int Count { get => count; }
         public T this[int i] { get => items[i]; set => items[i] = value; }
 
@@ -65,12 +65,25 @@ namespace CustomList
         }
         public override string ToString()
         {
-            string output = "";
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < count; i++)
             {
-                output += items[i];
+                sb.Append(items[i]);
             }
-            return output;
+            return sb.ToString();
+        }
+        public static CustomList<T> operator +(CustomList<T> a, CustomList<T> b)
+        {
+            CustomList<T> newList = new CustomList<T>();
+            for (int i = 0; i < a.Count; i++)
+            {
+                newList.Add(a[i]);
+            }
+            for (int i = 0; i < b.Count; i++)
+            {
+                newList.Add(b[i]);
+            }
+            return newList;
         }
     }
 }

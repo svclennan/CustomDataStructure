@@ -310,13 +310,51 @@ namespace CustomListUnitTest
         public void CheckOverloadPlus()
         {
             //Arrange
-            CustomList<int> myList1 = new CustomList<int>() { 1, 2, 3 };
-            CustomList<int> myList2 = new CustomList<int>() { 4, 5, 6 };
-            CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
-            CustomList<int> actual;
+            CustomList<int> myList1 = new CustomList<int>();
+            CustomList<int> myList2 = new CustomList<int>();
+            CustomList<int> expectedList = new CustomList<int>();
+            string expected;
+            string actual;
 
             //Act
-            actual = myList1 + myList2;
+            myList1.Add(1);
+            myList1.Add(2);
+            myList2.Add(3);
+            myList2.Add(4);
+            myList2.Add(5);
+            myList2.Add(6);
+            expectedList.Add(1);
+            expectedList.Add(2);
+            expectedList.Add(3);
+            expectedList.Add(4);
+            expectedList.Add(5);
+            expectedList.Add(6);
+            expected = expectedList.ToString();
+            actual = (myList1 + myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        public void CheckOverloadPlusString()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            CustomList<string> expectedList = new CustomList<string>();
+            string expected;
+            string actual;
+
+            //Act
+            myList1.Add("string");
+            myList1.Add("string2");
+            myList2.Add("string3");
+            myList2.Add("string4");
+            expectedList.Add("string");
+            expectedList.Add("string2");
+            expectedList.Add("string3");
+            expectedList.Add("string4");
+            expected = expectedList.ToString();
+            actual = (myList1 + myList2).ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -328,8 +366,9 @@ namespace CustomListUnitTest
             CustomList<int> myList1 = new CustomList<int>();
             CustomList<int> myList2 = new CustomList<int>();
             CustomList<int> myList3 = new CustomList<int>();
-            CustomList<int> expected = new CustomList<int>();
-            CustomList<int> actual;
+            CustomList<int> expectedList = new CustomList<int>();
+            string expected;
+            string actual;
 
             //Act
             myList1.Add(1);
@@ -338,13 +377,58 @@ namespace CustomListUnitTest
             myList2.Add(5);
             myList3.Add(7);
             myList3.Add(8);
-            expected.Add(1);
-            expected.Add(2);
-            expected.Add(4);
-            expected.Add(5);
-            expected.Add(7);
-            expected.Add(8);
-            actual = myList1 + myList2 + myList3;
+            expectedList.Add(1);
+            expectedList.Add(2);
+            expectedList.Add(4);
+            expectedList.Add(5);
+            expectedList.Add(7);
+            expectedList.Add(8);
+            expected = expectedList.ToString();
+            actual = (myList1 + myList2 + myList3).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckOverloadPlusStringListOfDifferentLenght()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            CustomList<string> expectedList = new CustomList<string>();
+            string expected;
+            string actual;
+
+            //Act
+            myList1.Add("string");
+            myList2.Add("string1");
+            myList2.Add("string2");
+            expectedList.Add("string");
+            expectedList.Add("string1");
+            expectedList.Add("string2");
+            expected = expectedList.ToString();
+
+            actual = (myList1 + myList2).ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckOverloadPlusListAndEmptyList()
+        {
+            //Arrange
+            CustomList<string> myList1 = new CustomList<string>();
+            CustomList<string> myList2 = new CustomList<string>();
+            CustomList<string> expectedList = new CustomList<string>();
+            string expected;
+            string actual;
+
+            //Act
+            myList1.Add("string");
+            expectedList.Add("string");
+            expected = expectedList.ToString();
+
+            actual = (myList1 + myList2).ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
