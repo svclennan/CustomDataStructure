@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,39 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable<T>, IComparable<T>
     {
         T[] items;
         private int capacity;
         private int count;
         public int Capacity { get => capacity; set => capacity = value; }
         public int Count { get => count; }
-        public T this[int i] { get => items[i]; set => items[i] = value; }
+        public T this[int i]
+        {
+            get
+            {
+                if (i < 0 || i >= count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                return items[i];
+            }
+            set
+            {
+                if (i < 0 || i >= count)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                items[i] = value;
+            }
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
+        }
 
         public CustomList()
         {
@@ -123,6 +149,16 @@ namespace CustomList
                 }
             }
             return zipped;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CompareTo(T other)
+        {
+            throw new NotImplementedException();
         }
     }
 }

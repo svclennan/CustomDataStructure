@@ -124,7 +124,7 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        
+
         [TestMethod]
         public void CheckRemove()
         {
@@ -717,18 +717,72 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        /*
+
         [TestMethod]
-        [ExpectedException(typeof(IndexOutOfRangeException))]
-        public void CheckIndexOutOfBounds()
+        public void CheckIEnumerableInstantiation()
+        {
+            {
+                //Arrange
+                CustomList<int> myList = new CustomList<int>() { 1, 2, 3 };
+                int expected = 2;
+                int actual;
+
+                //Act
+                actual = myList[1];
+
+                //Assert
+                Assert.AreEqual(expected, actual);
+            }
+        }
+        [TestMethod]
+        public void CheckIterable()
         {
             //Arrange
-            CustomList<int> myList = new CustomList<int>();
-            int index = 3;
+            CustomList<int> myList = new CustomList<int>() { 1, 2, 3 };
+            int expected = 6;
+            int total = 0;
+            int actual;
 
             //Act
-            int value = myList[index];
+            foreach (int items in myList)
+            {
+                total += items;
+            }
+            actual = total;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
-        */
+        /*
+        [TestMethod]
+        public void CheckSortInt()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 2, 4, 6, 8, 0, 1, 5, 9, 3, 7 };
+            string expected = "0123456789";
+            string actual;
+
+            //Act
+            actual = (myList.Sort()).ToString();
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckSortString()
+        {
+            //Arrange
+            CustomList<string> myList = new CustomList<string>() { "c","a","e","d","b" };
+            string expected = "abcde";
+            string actual;
+
+            //Act
+            actual = (myList.Sort()).ToString();
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }*/
     }
 }
