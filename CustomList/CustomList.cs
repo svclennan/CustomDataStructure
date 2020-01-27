@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T> : IEnumerable<T>, IComparable<T>
+    public class CustomList<T> : IEnumerable<T> where T : IComparable
     {
         T[] items;
         private int capacity;
@@ -151,14 +151,76 @@ namespace CustomList
             return zipped;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        public CustomList<T> Sort()
         {
-            throw new NotImplementedException();
+            CustomList<T> sortedList = new CustomList<T>();
+            CustomList<T> temporary = new CustomList<T>();
+            for (int i = 0; i < count; i++)
+            {
+                temporary.Add(items[i]);
+            }
+            T minValue;
+            while (true)
+            {
+                if (temporary.Count == 0)
+                {
+                    break;
+                }
+                minValue = temporary[0];
+                for (int i = 0; i < temporary.Count; i++)
+                {
+                    if (temporary[i].CompareTo(minValue) < 0)
+                    {
+                        minValue = temporary[i];
+                    }
+                }
+                sortedList.Add(minValue);
+                temporary.Remove(minValue);
+            }
+            return sortedList;
         }
 
-        public int CompareTo(T other)
+        public bool Contains(T value)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < count; i++)
+            {
+                if (items[i].CompareTo(value) == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
+
+        public void Clear()
+        {
+            items = new T[4];
+            capacity = 4;
+            count = 0;
+        }
+
+        public void Reverse()
+        {
+            CustomList<T> temporary = new CustomList<T>();
+            for (int i = count; i > 0; i--)
+            {
+                temporary.Add(items[i-1]);
+            }
+            int index = 0;
+            foreach (T item in temporary)
+            {
+                items[index] = item;
+                index++;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
+        }
+
     }
 }

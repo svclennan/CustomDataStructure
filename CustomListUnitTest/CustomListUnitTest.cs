@@ -753,7 +753,6 @@ namespace CustomListUnitTest
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        /*
         [TestMethod]
         public void CheckSortInt()
         {
@@ -773,7 +772,7 @@ namespace CustomListUnitTest
         public void CheckSortString()
         {
             //Arrange
-            CustomList<string> myList = new CustomList<string>() { "c","a","e","d","b" };
+            CustomList<string> myList = new CustomList<string>() { "c", "a", "e", "d", "b" };
             string expected = "abcde";
             string actual;
 
@@ -783,6 +782,87 @@ namespace CustomListUnitTest
 
             //Assert
             Assert.AreEqual(expected, actual);
-        }*/
+        }
+
+        [TestMethod]
+        public void CheckContainsString()
+        {
+            //Arrange
+            CustomList<string> myList = new CustomList<string>() { "c", "a", "e", "d", "b" };
+            bool expected = true;
+            bool actual;
+
+            //Act
+            actual = myList.Contains("c");
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckContainsInt()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            bool expected = true;
+            bool actual;
+
+            //Act
+            actual = myList.Contains(2);
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckContainsDoesNotContain()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            bool expected = false;
+            bool actual;
+
+            //Act
+            actual = myList.Contains(8);
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckClear()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            int expected = 4;
+            int actual;
+
+            //Act
+            myList.Clear();
+            myList.Add(4);
+            actual = myList[0];
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckReverse()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            string expected = "54321";
+            string actual;
+
+            //Act
+            myList.Reverse();
+            actual = myList.ToString();
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
