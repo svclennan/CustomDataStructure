@@ -754,7 +754,7 @@ namespace CustomListUnitTest
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CheckSortInt()
+        public void CheckSortSelectionInt()
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>() { 2, 4, 6, 8, 0, 1, 5, 9, 3, 7 };
@@ -762,23 +762,23 @@ namespace CustomListUnitTest
             string actual;
 
             //Act
-            actual = (myList.Sort()).ToString();
-
+            myList.SelectionSort();
+            actual = myList.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void CheckSortString()
+        public void CheckSortSelectionString()
         {
             //Arrange
-            CustomList<string> myList = new CustomList<string>() { "c", "a", "e", "d", "b" };
+            CustomList<string> myList = new CustomList<string>() { "e", "d", "c", "b", "a" };
             string expected = "abcde";
             string actual;
 
             //Act
-            actual = (myList.Sort()).ToString();
-
+            myList.SelectionSort();
+            actual = myList.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -858,6 +858,71 @@ namespace CustomListUnitTest
 
             //Act
             myList.Reverse();
+            actual = myList.ToString();
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckIndexOf()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            int expected = 3;
+            int actual;
+
+            //Act
+            actual = myList.IndexOf(4);
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckInsertInt()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            string expected = "123945";
+            string actual;
+
+            //Act
+            myList.Insert(3,9);
+            actual = myList.ToString();
+
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckSortInsertionInt()
+        {
+            //Arrange
+            CustomList<int> myList = new CustomList<int>() { 5, 3, 4, 2, 1 };
+            string expected = "12345";
+            string actual;
+
+            //Act
+            myList.InsertionSort();
+            actual = myList.ToString();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void CheckSortInsertionString()
+        {
+            //Arrange
+            CustomList<string> myList = new CustomList<string>() { "a", "z", "a", "y", "a", "x", "a", "w", "a", "v", "a", "u", "a", "t", "a", "s", "a", "r", "a", "q", "a", "p", "a", "o", "a", "n", "a", "m", "a", "l", "a", "k", "a", "j", "a", "i", "a", "h", "a", "g", "a", "f", "a", "e", "a", "d", "a", "c", "a", "b", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "a", "f", "g", "a", "z", "y", "a", "f", "s", "b", "y", "a", "n" };
+            string expected = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbccddeeffffggghhiijjkkllmnnopqrsstuvwxyyyzz";
+            string actual;
+
+            //Act
+            myList.InsertionSort();
             actual = myList.ToString();
 
 

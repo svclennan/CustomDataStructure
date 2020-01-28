@@ -151,9 +151,28 @@ namespace CustomList
             return zipped;
         }
 
-        public CustomList<T> Sort()
+        public void SelectionSort()
         {
-            CustomList<T> sortedList = new CustomList<T>();
+            T minValue;
+            int minIndex;
+            T tempValue;
+            for (int j = 0; j < count; j++)
+            {
+                minValue = items[j];
+                minIndex = j;
+                for (int i = j; i < count; i++)
+                {
+                    if (items[i].CompareTo(minValue) < 0)
+                    {
+                        minValue = items[i];
+                        minIndex = i;
+                    }
+                }
+                tempValue = minValue;
+                items[minIndex] = items[j];
+                items[j] = tempValue;
+            }
+            /*CustomList<T> sortedList = new CustomList<T>();
             CustomList<T> temporary = new CustomList<T>();
             for (int i = 0; i < count; i++)
             {
@@ -177,7 +196,23 @@ namespace CustomList
                 sortedList.Add(minValue);
                 temporary.Remove(minValue);
             }
-            return sortedList;
+            return sortedList;*/
+            
+        }
+
+        public void InsertionSort()
+        {
+            for (int i = 1; i < count; i++)
+            {
+                T key = items[i];
+                int j = i - 1;
+                while (j >= 0 && items[j].CompareTo(key) > 0)
+                {
+                    items[j + 1] = items[j];
+                    j -= 1;
+                }
+                items[j + 1] = key;
+            }
         }
 
         public bool Contains(T value)
@@ -214,6 +249,39 @@ namespace CustomList
             }
         }
 
+        public int IndexOf(T value)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                if (items[i].Equals(value))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public void Insert(int index, T value)
+        {
+            if (count == capacity)
+            {
+                Capacity = capacity * 2;
+            }
+            T[] newList = new T[count + 1];
+            for (int i = 0; i < index; i++)
+            {
+                newList[i] = items[i];
+            }
+            newList[index] = value;
+            count++;
+            for (int i = index + 1; i < count; i++)
+            {
+                newList[i] = items[i-1];
+            }
+            items = new T[Capacity];
+            items = newList;
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             for (int i = 0; i < count; i++)
@@ -221,6 +289,5 @@ namespace CustomList
                 yield return items[i];
             }
         }
-
     }
 }

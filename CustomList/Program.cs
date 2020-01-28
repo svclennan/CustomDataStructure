@@ -10,7 +10,26 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
-            List<int> list;
+            //Console.WriteLine(Generator(5000));
+            //Console.ReadLine();
+
+            CustomList<string> myList = new CustomList<string>() { };
+            //Console.WriteLine((myList.SelectionSort()).ToString());
+            myList.InsertionSort();
+            Console.WriteLine(myList.ToString());
+        }
+        public static string Generator(int length)
+        {
+            Random rand = new Random();
+            string output = "";
+            while (length > 0)
+            {
+                int letterInt = rand.Next(97,123);
+                char letterChar = Convert.ToChar(letterInt);
+                output+= "\""+ letterChar + "\",";
+                length--;
+            }
+            return output;
         }
     }
 }
