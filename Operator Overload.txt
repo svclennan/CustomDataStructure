@@ -1,0 +1,28 @@
+Minus Operator Overload
+
+Removes any values in CustomList<T> a that are also found in CustomList<T> b.
+	public static CustomList<T> operator -(CustomList<T> a, CustomList<T> b)
+
+Parameters
+	CustomList<T> a
+		The starting CustomList of objects.
+	CustomList<T> b
+		The list of objects to be removed from a.
+
+Returns
+	CustomList<T>
+		Returns a new list with the values of a that are not in the list b.
+
+Implements
+	Remove(T)
+
+Examples
+	CustomList<int> myList = new CustomList<int>() { 5, 10, 15, 15, 15, 20, 25};
+	CustomList<int> myList2 = new CustomList<int>() { 10, 15, 30};
+	CustomList<int> finalList;
+
+	finalList = myList - myList2;
+
+	Console.WriteLine("The output is " + finalList.ToString());
+
+	//Prints : The output is 515152025

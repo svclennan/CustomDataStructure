@@ -155,8 +155,7 @@ namespace CustomList
         {
             T minValue;
             int minIndex;
-            T tempValue;
-            for (int j = 0; j < count; j++)
+            for (int j = 0; j < count-1; j++)
             {
                 minValue = items[j];
                 minIndex = j;
@@ -168,36 +167,9 @@ namespace CustomList
                         minIndex = i;
                     }
                 }
-                tempValue = minValue;
                 items[minIndex] = items[j];
-                items[j] = tempValue;
-            }
-            /*CustomList<T> sortedList = new CustomList<T>();
-            CustomList<T> temporary = new CustomList<T>();
-            for (int i = 0; i < count; i++)
-            {
-                temporary.Add(items[i]);
-            }
-            T minValue;
-            while (true)
-            {
-                if (temporary.Count == 0)
-                {
-                    break;
-                }
-                minValue = temporary[0];
-                for (int i = 0; i < temporary.Count; i++)
-                {
-                    if (temporary[i].CompareTo(minValue) < 0)
-                    {
-                        minValue = temporary[i];
-                    }
-                }
-                sortedList.Add(minValue);
-                temporary.Remove(minValue);
-            }
-            return sortedList;*/
-            
+                items[j] = minValue;
+            } 
         }
 
         public void InsertionSort()
